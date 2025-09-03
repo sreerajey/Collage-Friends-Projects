@@ -1,0 +1,327 @@
+
+{% include 'header.html' %}
+<!-- Class Timetable Start -->
+<div class="container-fluid p-5">
+    <div class="mb-5 text-center">
+        <h5 class="text-primary text-uppercase">Fenzer</h5>
+        <h1 class="display-3 text-uppercase mb-0">Tournament Details</h1>
+    </div>
+    <div class="tab-class text-center">
+        <ul class="nav nav-pills d-inline-flex justify-content-center bg-dark text-uppercase rounded-pill mb-5">
+            <li class="nav-item">
+                <a class="nav-link rounded-pill text-white active" data-bs-toggle="pill" href="#tab-1">Schedules</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded-pill text-white" data-bs-toggle="pill" href="#tab-2">Medals</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded-pill text-white" data-bs-toggle="pill" href="#tab-3">Results</a>
+            </li>
+           <li class="nav-item">
+                <a class="nav-link rounded-pill text-white" data-bs-toggle="pill" href="#tab-4">Pools</a>
+            </li>
+            <!--  <li class="nav-item">
+                <a class="nav-link rounded-pill text-white" data-bs-toggle="pill" href="#tab-5">Friday</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded-pill text-white" data-bs-toggle="pill" href="#tab-6">Saturday</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link rounded-pill text-white" data-bs-toggle="pill" href="#tab-7">Sunday</a>
+            </li> -->
+        </ul>
+        <div class="tab-content">
+            <div id="tab-1" class="tab-pane fade show p-0 active">
+                <div class="table-responsive">
+                    {% if result %}
+                    <table class="table table-striped table-bordered">
+                        <thead style="background-color: #333; color: #FB5B21;">
+                            <tr>
+                                <th>Event</th>
+                                <th>Start Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {% for schedule in result %}
+                            <tr style="background-color: #333; color: #fff;">
+                                <td>{{ schedule.event }}</td>
+                                <td>{{ schedule.start_time }}</td>
+                                {% if schedule.status == 'Active' %}
+                                <td>{{ schedule.status }}</td>
+                                {% else %}
+                                <td>Ended at : {{ schedule.status }}</td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <h2 style="color: #fff;">No Schedules Found </h2>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="tab-2" class="tab-pane fade p-0">
+                <div class="table-responsive">
+                    {% if result %}
+                    <table class="table table-striped table-bordered">
+                        <thead style="background-color: #333; color: #FB5B21;">
+                            <tr>
+                                <th>Country</th>
+                                <th>Gold</th>
+                                <th>Silver</th>
+                                <th>Bronze</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {% for schedule in result1 %}
+                            <tr style="background-color: #333; color: #fff;">
+                                <td>{{ schedule.country }}</td>
+                                <td>{{ schedule.gold }}</td>
+                                <td>{{ schedule.silver }}</td>
+                                <td>{{ schedule.bronze }}</td>
+                                <td>{{ schedule.total }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <h2 style="color: #fff;">No Medals Found </h2>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="tab-3" class="tab-pane fade p-0">
+                <div class="row g-5">
+                    {% for j in result3 %}
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">{{ j.date }}</h6>
+                            <h5 class="text-uppercase text-primary">{{ j.user.FullName }}</h5>
+                            <p class="text-uppercase text-secondary mb-0">Score : {{ j.score }}</p>
+                            <p class="text-uppercase text-secondary mb-0">Club : {{ j.user.District }}</p>
+                        </div>
+                    </div>
+                   {% endfor %}
+                </div>
+            </div>
+           <div id="tab-4" class="tab-pane fade p-0">
+            <div class="table-responsive">
+                {% if result %}
+                <table class="table table-striped table-bordered">
+                    <thead style="background-color: #333; color: #FB5B21;">
+                        <tr>
+                            <th>Participants </th>
+                            <th>V</th>
+                            <th>M</th>
+                            <th>V/M</th>
+                            <th>TS</th>
+                            <th>TR</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        {% for schedule in result4 %}
+                        <tr style="background-color: #333; color: #fff;">
+                            <td>{{ schedule.participant1 }} -VS- {{ schedule.participant2 }}</td>
+                            <td>{{ schedule.v }}</td>
+                            <td>{{ schedule.m }}</td>
+                            <td>{{ schedule.vm }}</td>
+                            <td>{{ schedule.ts }}</td>
+                            <td>{{ schedule.tr }}</td>
+                            <td>{{ schedule.country }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <h2 style="color: #fff;">No Medals Found </h2>
+                {% endif %}
+            </div>
+            </div>
+             <!-- <div id="tab-5" class="tab-pane fade p-0">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">6.00am - 8.00am</h6>
+                            <h5 class="text-uppercase text-primary">Power Lifting</h5>
+                            <p class="text-uppercase text-secondary mb-0">John Deo</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">8.00am - 10.00am</h6>
+                            <h5 class="text-uppercase text-primary">Body Building</h5>
+                            <p class="text-uppercase text-secondary mb-0">James Taylor</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">10.00am - 12.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Cardio Program</h5>
+                            <p class="text-uppercase text-secondary mb-0">Jack Sparrow</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">12.00pm - 2.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Weight Loose</h5>
+                            <p class="text-uppercase text-secondary mb-0">Robert Smith</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">2.00pm - 4.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Fitness Program</h5>
+                            <p class="text-uppercase text-secondary mb-0">Adam Phillips</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">4.00pm - 6.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Crossfit Class</h5>
+                            <p class="text-uppercase text-secondary mb-0">James Alien</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">6.00pm - 8.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Muscle Building</h5>
+                            <p class="text-uppercase text-secondary mb-0">Petter John</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">8.00pm - 10.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Yoga Class</h5>
+                            <p class="text-uppercase text-secondary mb-0">Jessy Reo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-6" class="tab-pane fade p-0">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">6.00am - 8.00am</h6>
+                            <h5 class="text-uppercase text-primary">Power Lifting</h5>
+                            <p class="text-uppercase text-secondary mb-0">John Deo</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">8.00am - 10.00am</h6>
+                            <h5 class="text-uppercase text-primary">Body Building</h5>
+                            <p class="text-uppercase text-secondary mb-0">James Taylor</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">10.00am - 12.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Cardio Program</h5>
+                            <p class="text-uppercase text-secondary mb-0">Jack Sparrow</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">12.00pm - 2.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Weight Loose</h5>
+                            <p class="text-uppercase text-secondary mb-0">Robert Smith</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">2.00pm - 4.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Fitness Program</h5>
+                            <p class="text-uppercase text-secondary mb-0">Adam Phillips</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">4.00pm - 6.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Crossfit Class</h5>
+                            <p class="text-uppercase text-secondary mb-0">James Alien</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">6.00pm - 8.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Muscle Building</h5>
+                            <p class="text-uppercase text-secondary mb-0">Petter John</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">8.00pm - 10.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Yoga Class</h5>
+                            <p class="text-uppercase text-secondary mb-0">Jessy Reo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-7" class="tab-pane fade p-0">
+                <div class="row g-5">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">6.00am - 8.00am</h6>
+                            <h5 class="text-uppercase text-primary">Power Lifting</h5>
+                            <p class="text-uppercase text-secondary mb-0">John Deo</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">8.00am - 10.00am</h6>
+                            <h5 class="text-uppercase text-primary">Body Building</h5>
+                            <p class="text-uppercase text-secondary mb-0">James Taylor</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">10.00am - 12.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Cardio Program</h5>
+                            <p class="text-uppercase text-secondary mb-0">Jack Sparrow</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">12.00pm - 2.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Weight Loose</h5>
+                            <p class="text-uppercase text-secondary mb-0">Robert Smith</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">2.00pm - 4.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Fitness Program</h5>
+                            <p class="text-uppercase text-secondary mb-0">Adam Phillips</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">4.00pm - 6.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Crossfit Class</h5>
+                            <p class="text-uppercase text-secondary mb-0">James Alien</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">6.00pm - 8.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Muscle Building</h5>
+                            <p class="text-uppercase text-secondary mb-0">Petter John</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="bg-dark rounded text-center py-5 px-3">
+                            <h6 class="text-uppercase text-light mb-3">8.00pm - 10.00pm</h6>
+                            <h5 class="text-uppercase text-primary">Yoga Class</h5>
+                            <p class="text-uppercase text-secondary mb-0">Jessy Reo</p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- Class Timetable Start -->
+
+{% include 'footer.html' %}

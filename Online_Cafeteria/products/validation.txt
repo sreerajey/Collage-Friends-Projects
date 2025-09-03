@@ -1,0 +1,5 @@
+	     Phone Number:	pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$">
+             
+             Text Field Not digits  :  pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$"
+
+             Email Field            : 	pattern="^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$">

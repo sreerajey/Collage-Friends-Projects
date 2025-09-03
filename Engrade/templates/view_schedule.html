@@ -1,0 +1,53 @@
+
+{% include 'header.html' %}
+
+<div class="container-fluid p-5">
+
+    <div class="row g-0">
+        <div class="col-lg-12">
+            <h2 style="background-color: #333; color: #fff; padding: 10px;">Tournaments Schedules</h2>
+            <div class="bg-dark p-5">
+         
+                <div class="table-responsive">
+                    {% if result %}
+                    <table class="table table-striped table-bordered">
+                        <thead style="background-color: #333; color: #FB5B21;">
+                            <tr>
+                                <th>Event</th>
+                                <th>Start Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {% for schedule in result %}
+                            <tr style="color: #fff;">
+                                <td>{{ schedule.event }}</td>
+                                <td>{{ schedule.start_time }}</td>
+                                {% if schedule.status == 'Active' %}
+                                <td>{{ schedule.status }}</td>
+                                {% else %}
+                                <td>Ended at : {{ schedule.status }}</td>
+                                {% endif %}
+                                {% if schedule.status == 'Active' %}
+                               <td> <form action="http://127.0.0.1:8000/up_status/{{schedule.id}}" method="post">
+                                {% csrf_token %}
+                                <label for="">Update Status</label>
+                                <input type="time" placeholder="End Time" required name="time" id="">
+                                <input type="submit" name="submit" class="btn btn-primary" >
+                            </form>
+                        </td>
+                        {% endif %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <h2 style="color: #fff;">No Schedules Found </h2>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}

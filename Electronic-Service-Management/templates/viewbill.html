@@ -1,0 +1,55 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+<!-- Start Wishlist  -->
+<div class="wishlist-box-main">
+    <div class="container"><br>
+        <h3> </h3><br>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive">
+                    <h4>View Bill</h4>
+                    <form class="main_form" method="POST" action="payment/{{result.id}}">
+                        {% csrf_token %}
+                       
+                        {% if result %}
+<p>User Name: {{ result.uid }}</p>
+<p>Amount: {{ result.amount }}</p>
+
+<div class="col-sm-12">
+    <button class="find_btn" name="submit">Payment</button>
+    </div>
+{% else %}
+<p>No bill found for the specified user.</p>
+{% endif %}
+                           
+                            
+                        
+                    </form><br><br>
+                  
+                       
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% include 'footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% load static %}
+{% include 'header.html' %}
+<div class="container-fluid p-5">
+   
+    <div class="row g-0">
+        <h2>Add Tournaments Schedules</h2>
+        <div class="col-lg-6">
+            <div class="bg-dark p-5">
+                <form action="addsch/{{result.id}}" method="POST"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <label for="">Event</label>
+                            <input type="text" class="form-control bg-light border-0 px-4" name="event" placeholder="Event" style="height: 55px;">
+                        </div>
+                       
+                        <div class="col-6">
+                            <label for="">Start Time</label>
+                            <input type="time" class="form-control bg-light border-0 px-4" name="start_time" placeholder="Start Time" style="height: 55px;">
+                        </div>
+                     
+
+                        
+                        <div class="col-6">
+                            <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% include 'footer.html' %}

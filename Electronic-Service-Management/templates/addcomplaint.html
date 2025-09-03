@@ -1,0 +1,65 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary p-5 hero-header mb-5">
+        <div class="row py-5">
+            <div class="col-12 text-center">
+                <h1 class="display-1 text-white animated zoomIn">Add Complaint</h1>
+             
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+                <h5 class="text-primary text-uppercase" style="letter-spacing: 5px;">Add Complaint</h5>
+            </div>
+            <div class="row g-12">
+                <div class="col-lg-12 wow slideInUp" data-wow-delay="0.3s">
+                    <div class="bg-light rounded p-5">
+                        <form action="addcomplaint" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <input class="contactus" placeholder=" User Name" hidden type="text" name="uid">                          
+                                    </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control border-0 px-4" placeholder="Your Device Name" name="dname" required data-error="Please enter Device name" style="height: 55px;">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" class="form-control border-0 px-4" placeholder="Description" name="desc"  required  style="height: 55px;">
+                                </div>
+                                <div class="col-6">
+                                    <input type="date" class="form-control border-0 px-4" placeholder="Date" name="date"  required  style="height: 55px;">
+                                </div>
+                                <div class="col-6">
+                                    <input type="file" class="form-control border-0 px-4" placeholder="Image" name="image"  required  style="height: 55px;">
+                                </div>
+                                
+                                <div class="col-12">
+                                    <input type="text" class="form-control border-0 px-4"  name="status" value="pending" hidden style="height: 55px;">
+                                </div>
+                                
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" name="submit" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+      
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+{% include 'footer.html' %}
+
+{% endblock %}

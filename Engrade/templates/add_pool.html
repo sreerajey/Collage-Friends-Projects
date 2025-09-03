@@ -1,0 +1,63 @@
+{% load static %}
+{% include 'header.html' %}
+<div class="container-fluid p-5">
+   
+    <div class="row g-0">
+        <h2>Add Tournaments Pool</h2>
+        <div class="col-lg-6">
+            <div class="bg-dark p-5">
+                <form action="addpool/{{tournament.id}}" method="POST"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <label for="">Participant 1</label>
+                            <select name="participant1" required class="form-control bg-light border-0 px-4" id="">
+                                <option value="">Select</option>
+                                {% for registration in registered_users %}
+                                    <option value="{{ registration.user.FullName }}">{{ registration.user.FullName }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Participant 2</label>
+                            <select name="participant2" required class="form-control bg-light border-0 px-4" id="">
+                                <option value="">Select</option>
+                                {% for registration in registered_users %}
+                                    <option value="{{ registration.user.FullName }}">{{ registration.user.FullName }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="col-6">
+                            <label for="">V</label>
+                            <input type="number" required min="0" class="form-control bg-light border-0 px-4" name="v" placeholder="V" style="height: 55px;">
+                        </div>
+                        <div class="col-6">
+                            <label for="">M</label>
+                            <input type="number" required min="0" class="form-control bg-light border-0 px-4" name="m" placeholder="M" style="height: 55px;">
+                        </div>
+                       
+                        <div class="col-6">
+                            <label for="">TS</label>
+                            <input type="number" required min="0" class="form-control bg-light border-0 px-4" name="ts" placeholder="TS" style="height: 55px;">
+                        </div>
+                        <div class="col-6">
+                            <label for="">TR</label>
+                            <input type="number" required min="0" class="form-control bg-light border-0 px-4" name="tr" placeholder="TR" style="height: 55px;">
+                        </div>
+                        
+                        <div class="col-12">
+                            <label for="">Country</label>
+                            <input type="text" required class="form-control bg-light border-0 px-4" name="country" placeholder="Country" style="height: 55px;">
+                        </div>
+                     
+
+                        
+                        <div class="col-6">
+                            <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% include 'footer.html' %}

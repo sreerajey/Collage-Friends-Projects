@@ -1,0 +1,70 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+<!-- Start Wishlist  -->
+<div class="wishlist-box-main">
+    <div class="container"><br>
+        <h3> View Work</h3><br>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Device Name</th>
+                                <th>Description </th>
+                                <th>Date</th>
+                                <th>User Name</th>
+                                <th>Completed Status</th>
+                                <th>Status</th>
+                                <th>Accept/Reject</th>
+                                <th>Completed Work</th>
+      <th>Add Bill</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                              {% for i in result %}
+                                <td class="name-pr">{{i.cmpltid.dname}}</td>
+                                <td class="price-pr">{{i.cmpltid.desc}}</td>
+                                <td class="quantity-box">{{i.cmpltid.date}}</td>
+                                <td class="quantity-box">{{i.cmpltid.uid}}</td>
+                                <td class="quantity-box">{{i.cstatus}}</td>
+                                <td>{{i.status}}</td>
+     <td class="remove-pr">
+                              <a class="btn " href="acceptreq/{{i.id}}"><i ></i>Accept</a><br>
+                         
+                            <a class="btn " href="rejectreq/{{i.id}}"><i ></i>Reject</a>
+                        </td>
+                        <td><a  href="complete/{{i.id}}"><i ></i>Completed</a></td>
+      <td><a href="bill/{{i.id}}">Add Bill</a></td>
+                                
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% include 'footer.html' %}
+
+{% endblock %}

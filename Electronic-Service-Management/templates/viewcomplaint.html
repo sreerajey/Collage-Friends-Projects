@@ -1,0 +1,64 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+<!-- Start Wishlist  -->
+<div class="wishlist-box-main">
+    <div class="container"><br>
+        <h3> </h3><br>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive">
+                    <h4>View Complaints</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>Device Name </th>
+                                <th>Description</th>
+                                <th>Date</th>
+                                <th>Image</th>     
+                                <th>Alot Staff</th>                 
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                              {% for i in result %}
+                                <td class="name-pr">{{i.uid}}</td>
+                                <td class="price-pr">{{i.dname}}</td>
+                                <td class="name-pr">{{i.desc}}</td>
+                                <td class="name-pr">{{i.date}}</td>
+                                <td class="name-pr">{{i.image}}</td>
+                                <td> <a href="awork/{{i.id}}">Assign Staff</a></td>
+                            </tr>
+                            {% endfor %}
+                            
+                        </tbody>
+                       
+                    </table><br><br>
+                  
+                       
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% include 'footer.html' %}
+
+{% endblock %}
