@@ -1,0 +1,56 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+	<!-- Contact Us -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 wow fadeInUp">
+                    <div class="section-title">
+                        <h2>Add<span> Bill</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+<!-- Add bill form -->
+<form method="post" action="addbill/{{res}}">
+
+    {% csrf_token %}
+    <div class="form-group">
+        <i class="fa fa-user"></i>
+        <input type="text" name="pid" placeholder="Parent Name"  hidden value="{{ result.pid}}">
+    </div>
+    <div class="form-group">
+        <i class="fa fa-user"></i>
+        <input type="text" name="cid" placeholder="Child Name" value="{{ result.id}}">
+    </div>
+    <div class="form-group">
+        <i class="fa fa-user"></i>
+        <input type="text" name="fees" placeholder="Fees " required>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="button primary"><i class="fa fa-send"></i>Add Bill</button>
+    </div>
+</form>
+                </div>
+                <!--/ Contact Form -->
+                <!-- Google Map --><br><br>
+                <div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp">
+                    <div class="contact-map">
+                        <div class="single-client">
+                            <img src="static/images/1.jpg" alt="" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+                <!--/ End Google Map -->
+            </div>
+        </div>
+    </section>
+    <!--/ End Clients Us -->
+ 
+{% include 'footer.html' %}
+
+{% endblock %}

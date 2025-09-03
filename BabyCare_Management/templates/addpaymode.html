@@ -1,0 +1,125 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+<style>
+    /* Add some padding to the entire section */
+#payment-modes,
+#google-map {
+    padding: 60px 0;
+}
+
+/* Style the section title */
+.section-title h2 {
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+}
+
+/* Style payment options */
+.payment-option {
+    margin-bottom: 20px;
+}
+
+.payment-option a {
+    display: block;
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.payment-option a:hover {
+    background-color: #0056b3;
+}
+
+/* Style the Google Map section */
+.contact-map {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.single-client img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Add some spacing between the sections */
+section {
+    margin-bottom: 30px;
+}
+
+/* Add spacing to the footer */
+#footer {
+    margin-top: 30px;
+    padding: 30px 0;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+/* Style the footer text */
+#footer p {
+    margin-bottom: 0;
+}
+
+/* Add some space at the bottom of the page */
+body {
+    margin-bottom: 60px;
+}
+
+</style>
+<!-- Payment Modes -->
+<section id="payment-modes" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 wow fadeInUp">
+                <div class="section-title">
+                    <h2>Payment <span>Mode</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp">
+                <div class="payment-option">
+                    <a class="btn btn-sm btn-primary" href="http://127.0.0.1:8000/addcard/{{result}}">Card</a>
+                </div>
+            </div>
+          <!--  <div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp">
+                <div class="payment-option">
+                    <a class="btn btn-sm btn-primary" href="http://127.0.0.1:8000/gpay/{{result}}">Gpay</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp">
+                <div class="payment-option">
+                    <a class="btn btn-sm btn-primary" href="http://127.0.0.1:8000/cash">Cash</a>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</section>
+<!--/ End Payment Modes -->
+
+<!-- Google Map -->
+<section id="google-map" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp">
+                <div class="contact-map">
+                    <div class="single-client">
+                        <img src="{% static 'images/1.jpg' %}" alt="" class="img-responsive">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Google Map -->
+
+{% include 'footer.html' %}
+
+{% endblock %}

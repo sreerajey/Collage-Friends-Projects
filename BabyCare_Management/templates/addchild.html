@@ -1,0 +1,170 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+	<!-- Contact Us -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 wow fadeInUp">
+                    <div class="section-title">
+                        <h2>Add<span> Child</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="col-md-8 col-sm-12 col-xs-12 wow fadeInUp">
+                    <form class="form" method="post" action="addchild">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="control-group">
+                                <select class="form-control"  name="pid" >
+                                    <option value="">Parent</option>
+                                    {% for i in hi %}
+                                    <option value="{{i.id}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-user"></i>
+                            <input type="text" name="name" placeholder="Child Name" required="required">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-calendar"></i>
+                            <input type="text" name="date" value="{% now 'Y-m-d ' %}" readonly>
+                        </div>
+                        <label>DOB</label>
+                    <div class="form-group">
+                        <i class="fa fa-list"></i>
+                        <input type="date" name="dob" id="dob" placeholder="Date Of Birth">
+                    </div>
+                    <div class="form-group">
+                        <i class="fa fa-user"></i>
+                        <input type="text" name="age" id="age" placeholder="Age" readonly>
+                    </div>
+                        <div class="form-group">
+                            <i class="fa fa-user"></i>
+                            <select class="form-control" required name="gender">
+                                <option value="none" selected>&nbsp;&nbsp; &nbsp; &nbsp;Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-book"></i>
+                            <textarea name="description" rows="6" placeholder="Description"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="control-group">
+                                <select class="form-control"  name="staytype_id" >
+                                    <option value="">Stay Type</option>
+                                    {% for i in result %}
+                                    <option value="{{i.id}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="control-group">
+                                <select class="form-control"  name="category_id" >
+                                    <option value="">Child Category</option>
+                                    {% for i in resul %}
+                                    <option value="{{i.id}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="control-group">
+                                <select class="form-control"  name="options_id" >
+                                    <option value="">Options</option>
+                                    {% for i in resu %}
+                                    <option value="{{i.id}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="control-group">
+                                <select class="form-control"  name="requirements_id" >
+                                    <option value="">Child Requirements</option>
+                                    {% for i in res %}
+                                    <option value="{{i.id}}">{{i.name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                       
+
+
+
+
+
+
+
+
+                        <div class="form-group">	
+                            <button type="submit" class="button primary"><i class="fa fa-send"></i>Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <!--/ Contact Form -->
+                <!-- Google Map --><br><br>
+                <div class="col-md-4 col-sm-6 col-xs-12 wow fadeInUp">
+                    <div class="contact-map">
+                        <div class="single-client">
+                            <img src="static/images/1.jpg" alt="" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+                <!--/ End Google Map -->
+            </div>
+        </div>
+    </section>
+    <!--/ End Clients Us -->
+    <script>
+        document.getElementById('dob').addEventListener('change', function() {
+            var dob = new Date(this.value);
+            var today = new Date();
+            var age = today.getFullYear() - dob.getFullYear();
+            var monthDiff = today.getMonth() - dob.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            
+            document.getElementById('age').value = age;
+        });
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            var dateInput = document.getElementsByName('date')[0];
+    
+            // Set the minimum date to the current date
+            var today = new Date();
+            var yyyy = today.getFullYear();
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var dd = String(today.getDate()).padStart(2, '0');
+            var minDate = yyyy + '-' + mm + '-' + dd;
+    
+            dateInput.min = minDate;
+        });
+    
+    
+    </script>
+{% include 'footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% block content %}
+{% load static %}
+
+{% include 'header.html' %}
+
+<!-- View Bill Section -->
+<section id="view-bill" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 wow fadeInUp">
+                <div class="section-title">
+                    <h2>View <span>Bill</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Bill Table -->
+            <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInUp">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Child Name</th>
+                            <th scope="col">Fees</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in result %}
+                            <tr>
+                                <td>{{ i.cid }}</td>
+                                <td>{{ i.fees }}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="paymode/{{ i.pid }}">Pay</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!--/ Bill Table -->
+        </div>
+    </div>
+</section>
+<!--/ End View Bill Section -->
+
+<!-- Spacer -->
+<section id="spacer" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br><br><br>
+                <br><br><br>
+                <br><br><br>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Spacer -->
+
+{% include 'footer.html' %}
+
+{% endblock %}
